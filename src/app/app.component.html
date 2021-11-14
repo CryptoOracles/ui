@@ -4,7 +4,7 @@
     <div class="inner">
       <h3 class="masthead-brand">Cover</h3>
       <nav class="nav nav-masthead justify-content-center">
-        <button class="btn btn-lg btn-secondary" (click)="!userIsConnected && connectToWallet()" [disabled]="userIsConnected">
+        <button class="btn btn-lg btn-secondary" (click)="!userIsConnected && connectUser()" [disabled]="userIsConnected">
           {{ userIsConnected === true ? truncate(userAddress, 6) : "CONNECT" }}
         </button>
       </nav>

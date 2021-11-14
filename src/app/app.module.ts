@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { MintingPanelComponent } from './components/minting-panel/minting-panel.component';
 import { MintingPromptComponent } from './components/minting-prompt/minting-prompt.component';
-import { UtilsService } from './components/services/utils-service';
+import { ImxUtilsService } from './components/services/imx-utils-service';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { UtilsService } from './components/services/utils-service';
     BrowserModule,
   ],
   providers: [
-    UtilsService
+    ImxUtilsService
   ],
   bootstrap: [AppComponent]
 })

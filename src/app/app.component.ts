@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Web3 from "web3";
 import { environment } from 'src/environments/environment';
 import { Link } from '@imtbl/imx-sdk';
+import { ImxUtilsService } from './components/services/imx-utils-service';
 
 declare global {
   interface Window {
@@ -22,7 +23,8 @@ export class AppComponent implements OnInit{
   userAddress: string;
   userStarkPublicKey: string;
 
-  constructor() {
+  constructor(private imxUtils: ImxUtilsService) {
+
     // Set up user as connected if we have their details:
     this.userAddress = localStorage.getItem('WALLET_ADDRESS')!;
     this.userStarkPublicKey = localStorage.getItem('STARK_PUBLIC_KEY')!;
@@ -37,25 +39,31 @@ export class AppComponent implements OnInit{
     this.link = new Link(environment.imxLinkAddress);
   }
 
-  public connectToWallet() {
-    this.connectToMetamaskIMX();
+  public connectUser() {
+    this.connectToMetamaskIMX().then((userConnectedSuccessfully) => {
+      if(userConnectedSuccessfully) {
+        console.log('User connected successfully')
+      } else {
+        console.log('User could not be connected')
+      }
+    });
   }
 
-  public async connectToMetamaskIMX() {
+  public async connectToMetamaskIMX(): Promise<boolean> {
     try{
       const {address, starkPublicKey } = await this.link.setup({});
     
-      // Keep track of logged user info
-      localStorage.setItem('WALLET_ADDRESS', address);
-      localStorage.setItem('STARK_PUBLIC_KEY', starkPublicKey);
-
+      this.imxUtils.saveUserDetailsToStorage(address, starkPublicKey);
       this.userIsConnected = true;
       this.userAddress = address;
       this.userStarkPublicKey = starkPublicKey;
 
     } catch(e) {
-      console.log((e as Error).message);      
+      console.log((e as Error).message);
+      return false;
     }
+
+    return true;
   }
 
   public connectToMetamaskNatively() {
