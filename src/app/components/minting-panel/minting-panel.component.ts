@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { ImmutableXClient, Link } from '@imtbl/imx-sdk';
 
 @Component({
   selector: 'app-minting-panel',
@@ -7,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MintingPanelComponent implements OnInit {
 
+  imxClient: any;
+
   constructor() { }
 
   ngOnInit(): void {
-    
+    // IMX Client
+    ImmutableXClient.build({ publicApiUrl: environment.imxApiAddress }).then(client => this.imxClient = client);
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Web3 from "web3";
 import { environment } from 'src/environments/environment';
-import { ImmutableXClient, Link } from '@imtbl/imx-sdk';
+import { Link } from '@imtbl/imx-sdk';
 
 declare global {
   interface Window {
