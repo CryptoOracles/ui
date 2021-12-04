@@ -20,15 +20,21 @@ export class AppComponent implements OnInit{
   link: any;
   imxClient: any;
   userIsConnected: boolean = false;
+  //metamaskIsInstalled: boolean = false;
   userAddress: string;
   userStarkPublicKey: string;
 
   constructor(private imxUtils: ImxUtilsService) {
 
+    // When an account is disconnected, reinitialise
+    window.ethereum.on('accountsChanged', async () => {
+      localStorage.removeItem('WALLET_ADDRESS');
+    });
+
     // Set up user as connected if we have their details:
     this.userAddress = localStorage.getItem('WALLET_ADDRESS')!;
     this.userStarkPublicKey = localStorage.getItem('STARK_PUBLIC_KEY')!;
-
+ 
     if(this.userAddress && this.userStarkPublicKey) {
       this.userIsConnected = true;
     }
@@ -38,6 +44,22 @@ export class AppComponent implements OnInit{
     // Link SDK
     this.link = new Link(environment.imxLinkAddress);
   }
+
+  // public isMetaMaskInstalled() {
+  //   return Boolean(window.ethereum && window.ethereum.isMetaMask);
+  
+  // }
+
+  // public async isMetaMaskConnected() {
+  //   const {ethereum} = window;
+  //   const accounts = await ethereum.request({method: 'eth_accounts'});
+  //   return accounts && accounts.length > 0;
+  // }
+
+  // public async initialise() {
+  //   this.userIsConnected = await this.isMetaMaskConnected();
+  //   this.metamaskIsInstalled = this.isMetaMaskInstalled();
+  // }
 
   public connectUser() {
     this.connectToMetamaskIMX().then((userConnectedSuccessfully) => {
