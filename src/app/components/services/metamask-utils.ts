@@ -1,7 +1,7 @@
 import { environment } from "src/environments/environment";
 import { AlchemyProvider } from '@ethersproject/providers';
 import Web3 from "web3";
-
+import { EventEmitter, Injectable, Output } from "@angular/core";
 
 declare global {
     interface Window {
@@ -9,12 +9,21 @@ declare global {
     }
 }
 
-class Web3Utils {
+@Injectable({
+    providedIn: 'root',
+})
+export class MetamaskUtils {
+    
+    @Output() onMetamaskConnect: EventEmitter<any> = new EventEmitter();
+    @Output() onMetamaskDisconnect: EventEmitter<any> = new EventEmitter();
 
 	provider: AlchemyProvider;
 
 	constructor() {
 		this.provider = new AlchemyProvider(environment.ethNetwork, environment.alchemyApiKey);
+        window.ethereum.on('accountsChanged', (accounts: any) => {
+            return accounts.length > 0 ? this.onMetamaskConnect.emit() :  this.onMetamaskDisconnect.emit();
+        });
 	}
     
 	/****************/
@@ -34,11 +43,8 @@ class Web3Utils {
 			const metamaskIsInstalled = window.ethereum.isMetaMask;
 			console.log('Metamask installed: ' + metamaskIsInstalled)
 
-			//web3 = new Web3(window.ethereum);
-
 			// Connect metamask and get accounts array
-			
-			const accounts = window.ethereum.request({
+			window.ethereum.request({
 				method: "eth_requestAccounts",
 			});
 			
@@ -47,13 +53,13 @@ class Web3Utils {
 
 	public isMetaMaskInstalled() {
     return Boolean(window.ethereum && window.ethereum.isMetaMask);
-  }
+    }
 
-  public async isMetaMaskConnected() {
+    public async isMetaMaskConnected() {
     const {ethereum} = window;
     const accounts = await ethereum.request({method: 'eth_accounts'});
     return accounts && accounts.length > 0;
-  }
+    }
 
 	// Helper to monitor and wait for a specific transaction to be completed on eth network.
 	public waitForTransaction = async (promise: Promise<string>) => {

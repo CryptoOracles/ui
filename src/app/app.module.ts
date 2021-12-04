@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { MintingPanelComponent } from './components/minting-panel/minting-panel.component';
 import { MintingPromptComponent } from './components/minting-prompt/minting-prompt.component';
+import { MetamaskUtils } from './components/services/metamask-utils';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { MintingPromptComponent } from './components/minting-prompt/minting-prom
     BrowserModule,
   ],
   providers: [
+    MetamaskUtils
   ],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,5 @@
 
-class UserDetails {
+export class UserDetails {
 
     address: string;
     starkPublicKey: string;
@@ -16,6 +16,11 @@ class UserDetails {
     public store() {
         localStorage.setItem('WALLET_ADDRESS', this.address);
         localStorage.setItem('STARK_PUBLIC_KEY', this.starkPublicKey);
+    }
+
+    public clearStorage() {
+        localStorage.removeItem('WALLET_ADDRESS');
+        localStorage.removeItem('STARK_PUBLIC_KEY');
     }
 
     public static fromStorage() : any {
