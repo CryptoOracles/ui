@@ -45,22 +45,6 @@ export class AppComponent implements OnInit{
     this.link = new Link(environment.imxLinkAddress);
   }
 
-  // public isMetaMaskInstalled() {
-  //   return Boolean(window.ethereum && window.ethereum.isMetaMask);
-  
-  // }
-
-  // public async isMetaMaskConnected() {
-  //   const {ethereum} = window;
-  //   const accounts = await ethereum.request({method: 'eth_accounts'});
-  //   return accounts && accounts.length > 0;
-  // }
-
-  // public async initialise() {
-  //   this.userIsConnected = await this.isMetaMaskConnected();
-  //   this.metamaskIsInstalled = this.isMetaMaskInstalled();
-  // }
-
   public connectUser() {
     this.connectToMetamaskIMX().then((userConnectedSuccessfully) => {
       if(userConnectedSuccessfully) {
