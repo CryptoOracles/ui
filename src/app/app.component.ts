@@ -16,6 +16,7 @@ export class AppComponent implements OnInit{
   imxClient: any;
   user: any;
   userIsConnected: boolean = false;
+  metamaskIsInstalled: boolean = false;
 
   constructor(private metamaskUtils: MetamaskUtils) {
     this.user = UserDetails.fromStorage();
@@ -29,11 +30,14 @@ export class AppComponent implements OnInit{
   ngOnInit() {
     // Link SDK
     this.link = new Link(environment.imxLinkAddress);
+
+    // Check if metamask is installed
+    if (this.metamaskUtils.isMetaMaskInstalled()){
+      this.metamaskIsInstalled = true;
+    } 
   }
 
   public connectUser() {
-
-    // TODO check metamask is present.
     this.metamaskUtils.connectToMetamaskNatively();
 
     this.connectToMetamaskIMX().then((userIsConnectedSuccessfully) => {

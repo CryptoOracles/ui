@@ -21,9 +21,11 @@ export class MetamaskUtils {
 
 	constructor() {
 		this.provider = new AlchemyProvider(environment.ethNetwork, environment.alchemyApiKey);
-        window.ethereum.on('accountsChanged', (accounts: any) => {
-            return accounts.length > 0 ? this.onMetamaskConnect.emit() :  this.onMetamaskDisconnect.emit();
-        });
+        if(this.isMetaMaskInstalled()) {
+            window.ethereum.on('accountsChanged', (accounts: any) => {
+                return accounts.length > 0 ? this.onMetamaskConnect.emit() :  this.onMetamaskDisconnect.emit();
+            });
+        }
 	}
     
 	/****************/
@@ -52,7 +54,7 @@ export class MetamaskUtils {
 	}
 
 	public isMetaMaskInstalled() {
-    return Boolean(window.ethereum && window.ethereum.isMetaMask);
+        return Boolean(window.ethereum && window.ethereum.isMetaMask);
     }
 
     public async isMetaMaskConnected() {
