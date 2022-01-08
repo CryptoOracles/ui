@@ -9,6 +9,7 @@ export const environment = {
   // See all apps here: https://dashboard.alchemyapi.io/apps
   // The key below is for Ropsten (testnet)
   alchemyApiKey: 'qzmkgw1rU-B0G2VPiM6bVKmuEq1bFXy2',
-  alchemyTxDashboardLink: 'https://dashboard.alchemyapi.io/mempool/eth-ropsten/tx/'
+  alchemyTxDashboardLink: 'https://dashboard.alchemyapi.io/mempool/eth-ropsten/tx/',
+  tokenAddress:'0xa14075a5511e75f7edb2abb99c7633829d5abea4'
 };
 

@@ -9,5 +9,6 @@ export const environment = {
   // See all apps here: https://dashboard.alchemyapi.io/apps
   // The key below is for Mainnet
   alchemyApiKey: 'aC88Z_YNi1DXVt2FniYIdje1jnMimVtY',
-  alchemyTxDashboardLink: 'https://dashboard.alchemyapi.io/mempool/eth-mainnet/tx/'
+  alchemyTxDashboardLink: 'https://dashboard.alchemyapi.io/mempool/eth-mainnet/tx/',
+  tokenAddress:''
 };

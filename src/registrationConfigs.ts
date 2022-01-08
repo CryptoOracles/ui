@@ -1,7 +1,7 @@
 const NFT = {
     publicKey: "0x047359452f4ca88e86c74002f7755162afcd31ad8482bf05dfb9cb281e488a9fca9d3d49f81f212e51fbcb3de5f09e88dab9d8924bb211875793433b5bd6289ead",
     metadataUri: "https://gateway.pinata.cloud/ipfs/QmPwPpx4ndPCq8JcY2R71dNskSiLg8MdXg99aLPuVqEqjd/",
-    contractAddress: "0x100bf5f724a7f0dc0c4c5107b3fa82f7ec4d03c7",
+    contractAddress: "0xa14075a5511e75f7edb2abb99c7633829d5abea4",
     metadataSchema: {
         "metadata": [
           {
