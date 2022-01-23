@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 // Create Auth Signature
 import * as encUtils from 'enc-utils';
 
+// TODO: Check Moralis
 const provider = new AlchemyProvider('ropsten', environment.alchemyApiKey);
 //const log: ImLogger = new WinstonLogger(loggerConfig);
 const component = 'imx-bulk-mint-script';
