@@ -41,7 +41,7 @@ export class MetamaskUtils {
 			return;
 		}
 
-		if(window.ethereum != undefined) {
+		if(window.ethereum != undefined) { // Check if metamask is installed
 			const metamaskIsInstalled = window.ethereum.isMetaMask;
 			console.log('Metamask installed: ' + metamaskIsInstalled)
 
@@ -53,10 +53,12 @@ export class MetamaskUtils {
 		}
 	}
 
+	// Check if Metamask is installed
 	public isMetaMaskInstalled() {
         return Boolean(window.ethereum && window.ethereum.isMetaMask);
     }
 
+	// Check if Metamask is connected
     public async isMetaMaskConnected() {
     const {ethereum} = window;
     const accounts = await ethereum.request({method: 'eth_accounts'});

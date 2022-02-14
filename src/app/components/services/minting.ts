@@ -14,21 +14,6 @@ const provider = new AlchemyProvider('ropsten', environment.alchemyApiKey);
 //const log: ImLogger = new WinstonLogger(loggerConfig);
 const component = 'imx-bulk-mint-script';
 
-const waitForTransaction = async (promise: Promise<string>) => {
-    const txId = await promise;
-    // log.info(component, 'Waiting for transaction', {
-    //   txId,
-    //   etherscanLink: `https://ropsten.etherscan.io/tx/${txId}`,
-    //   alchemyLink: `https://dashboard.alchemyapi.io/mempool/eth-ropsten/tx/${txId}`,
-    // });
-    const receipt = await provider.waitForTransaction(txId);
-    if (receipt.status === 0) {
-      throw new Error('Transaction rejected');
-    }
-    //log.info(component, 'Transaction Mined: ' + receipt.blockNumber);
-    return receipt;
-};
-
 (async (): Promise<void> => {
     const mintToWallet = '0x....'; // eth wallet public address which will receive the token
     const signer = new Wallet(process.env.PRIVATE_KEY!).connect(provider);

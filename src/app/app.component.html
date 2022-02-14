@@ -1,15 +1,18 @@
 <div class="d-flex w-100 h-100 p-3 mx-auto flex-column">
 
+  <!--HEADER-->
   <header class="masthead mb-auto">
     <div class="inner">
       <h3 class="masthead-brand">Cover</h3>
       <nav class="nav nav-masthead justify-content-center">
+        <!--If metamask is not install have INSTALL METAMASK button-->
         <a href=""></a><button class="btn btn-lg btn-secondary" (click)="!metamaskIsInstalled" onClick="window.open('//metamask.io')"
          *ngIf="!metamaskIsInstalled; else resultNA;">
           INSTALL METAMASK
       </button>
         
         <ng-template #resultNA>
+          <!--If metamask is installed have CONNECT button-->
           <button class="btn btn-lg btn-secondary" (click)="!userIsConnected && connectUser()" [disabled]="userIsConnected">
             {{ userIsConnected === true ? "connected" : "CONNECT" }}
           </button>
