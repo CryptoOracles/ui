@@ -2,33 +2,28 @@
 export class UserDetails {
 
     address: string;
-    starkPublicKey: string;
 
-    constructor(address: string, starkPublicKey: string){
+    constructor(address: string){
         this.address = address;
-        this.starkPublicKey = starkPublicKey;
     }
 
     public isEmtpy(): boolean {
-        return !(this.address && this.starkPublicKey);
+        return !(this.address);
     }
 
     public store() {
         localStorage.setItem('WALLET_ADDRESS', this.address);
-        localStorage.setItem('STARK_PUBLIC_KEY', this.starkPublicKey);
     }
 
     public clearStorage() {
         localStorage.removeItem('WALLET_ADDRESS');
-        localStorage.removeItem('STARK_PUBLIC_KEY');
     }
 
     public static fromStorage() : any {
         let userAddress = localStorage.getItem('WALLET_ADDRESS')!;
-        let userStarkPublicKey = localStorage.getItem('STARK_PUBLIC_KEY')!;
 
-        if(userAddress && userStarkPublicKey) {
-            return new UserDetails(userAddress, userStarkPublicKey)
+        if(userAddress) {
+            return new UserDetails(userAddress)
         }
         return null;
     }

@@ -11,5 +11,4 @@ export class MintingPromptComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
